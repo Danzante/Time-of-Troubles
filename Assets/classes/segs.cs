@@ -165,6 +165,39 @@ namespace segments
                                 return a;
                             }
                         }
+                    } else
+                    {
+                        if(a.angle_left >= b.angle_left && a.angle_left <= b.angle_right)
+                        {
+                            if(a.angle_right >= b.angle_left && a.angle_right <= b.angle_right)
+                            {
+                                res.include_left = res.include_right = false;
+                                res.edge_left = res.edge_right = a.edge_right;
+                                res.dist = a.dist;
+                                res.renew();
+                            }
+                            else
+                            {
+                                res.include_left = false;
+                                res.edge_left = b.edge_right;
+                                res.dist = a.dist;
+                                res.renew();
+                            }
+                        } else
+                        {
+
+                            if (a.angle_right >= b.angle_left && a.angle_right <= b.angle_right)
+                            {
+                                res.include_right = false;
+                                res.edge_right = b.edge_left;
+                                res.dist = a.dist;
+                                res.renew();
+                            }
+                            else
+                            {
+                                return a;
+                            }
+                        }
                     }
                 }
             }
